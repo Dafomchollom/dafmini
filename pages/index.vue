@@ -1,7 +1,13 @@
 <template>
-  <Tutorial/>
+  <AppLoginComponent />
 </template>
 
 <script>
-export default {}
+// import AppLoginComponent from '@/components/auth/AppLoginComponent.vue'
+export default {
+  components: {
+    AppLoginComponent: () => import('@/components/auth/AppLoginComponent.vue'),
+  },
+  layout: 'Default',
+}
 </script>
