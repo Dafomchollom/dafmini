@@ -7,6 +7,7 @@ app.use(express.urlencoded({ extended: false }))
 dotenv.config()
 // import routes here
 const authRoute = require('./routes/auth')
+const productRoute = require('./routes/products')
 
 console.log(process.env.MONGOOSE_USERNAME, '::: user name:: ')
 // connect to DB
@@ -24,6 +25,7 @@ mongoose.connect(
 )
 
 app.use('/user', authRoute)
+app.use('/product', productRoute)
 app.get('/test', function (req, res) {
   res.send('Test successful')
 })

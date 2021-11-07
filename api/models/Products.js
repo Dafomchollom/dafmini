@@ -13,8 +13,16 @@ const productSchema = new mongoose.Schema({
     min: 6,
     max: 255,
   },
-  type: {
-    type: { type: mongoose.Schema.Types.ObjectId, ref: 'ProductType' },
+  productType: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ProductType',
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: Date,
     default: Date.now,
   },
 })

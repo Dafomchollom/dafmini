@@ -5,15 +5,39 @@
       <p>Browse Our Collection of the top books, games, music e.t.c</p>
     </div>
     <div class="shop_wrapper-body">
-      <AppSearchComponent />
+      <AppSearchComponent @products="handlerProducts" />
+      <h3>Showing Search Result</h3>
+      <a-row class="shop_seach-wrapper" :gutter="6">
+        <a-col v-for="(product, index) in products" :key="index" :span="6">
+          <AppProductCardComponent :product-object="product"
+        /></a-col>
+      </a-row>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   components: {
     AppSearchComponent: () => import('@/components/AppSearchComponent.vue'),
+    AppProductCardComponent: () =>
+      import('@/components/AppProductCardComponent.vue'),
+  },
+  data() {
+    return {
+      products: [],
+    }
+  },
+  computed: {
+    ...mapState({
+      cartItems: (state) => state.cartModule.cart,
+    }),
+  },
+  methods: {
+    handlerProducts(products) {
+      this.products = products
+    },
   },
 }
 </script>

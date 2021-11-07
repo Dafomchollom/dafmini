@@ -9,7 +9,6 @@
               v-model="searchObj.productName"
               label="Product Name"
               placeholder="Product Name"
-              :rules="{ required: true }"
               name="Product Name"
             />
           </a-col>
@@ -20,6 +19,13 @@
               placeholder="Product Type"
               rules="required"
               name="Product Type"
+              url="/api/product/productType"
+              :call-back-func="
+                (resp) => ({
+                  text: resp.name + ' (' + resp.description + ')',
+                  value: resp._id,
+                })
+              "
             />
           </a-col>
           <a-col :span="24">
@@ -51,7 +57,7 @@ export default {
   data() {
     return {
       searchObj: {
-        productType: 'dd',
+        productType: '',
         productName: '',
       },
     }
@@ -60,7 +66,17 @@ export default {
     async searchHandler() {
       const valid = await this.$refs.searchObserver.validate()
       if (valid) {
-        console.log(this.searchObj)
+        const { data } = await this.$axios.get(`/api/product/`, {
+          params: {
+            ...this.searchObj,
+          },
+        })
+        this.$notification.success({
+          message: 'Successful search',
+          duration: 5,
+        })
+        this.products = data
+        this.$emit('products', data)
       } else {
         this.$notification.warning({
           message: 'Wrong Input',
@@ -89,6 +105,7 @@ export default {
   }
   .search_wrapper-submitBtn {
     width: 100%;
+    margin: 10px 0px;
   }
 }
 </style>

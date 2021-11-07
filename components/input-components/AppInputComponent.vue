@@ -36,7 +36,7 @@ export default {
   directives: {
     uppercase: {
       update(el) {
-        el.value = el.value.toUpperCase()
+        el.value = el.value.toLowerCase()
       },
     },
   },
@@ -195,14 +195,14 @@ export default {
         // NO SPACE ALONE
         case !this.spaceAllowed && this.charAllowed && this.textAllowed:
           this.innerValue = String(newVal)
-            .toUpperCase()
+            .toLowerCase()
             .slice(0, this.limitSize)
             .replace(this.spaceRegex, '')
           break
         // NO SPACE, NO SPECIAL CHARACTER
         case !this.spaceAllowed && !this.charAllowed && this.textAllowed:
           this.innerValue = String(newVal)
-            .toUpperCase()
+            .toLowerCase()
             .slice(0, this.limitSize)
             .replace(this.spaceRegex, '')
             .replace(this.specialCharacterRegex, '')
@@ -210,7 +210,7 @@ export default {
         // NO SPACE, NO SPECIAL CHARACTER, AND NO TEXT
         case !this.spaceAllowed && !this.charAllowed && !this.textAllowed:
           this.innerValue = String(newVal)
-            .toUpperCase()
+            .toLowerCase()
             .slice(0, this.limitSize)
             .replace(this.spaceRegex, '')
             .replace(this.specialCharacterRegex, '')
@@ -219,14 +219,14 @@ export default {
         // NO SPACIAL CHARACHER ALONE
         case this.spaceAllowed && !this.charAllowed && this.textAllowed:
           this.innerValue = String(newVal)
-            .toUpperCase()
+            .toLowerCase()
             .slice(0, this.limitSize)
             .replace(this.specialCharacterRegex, '')
           break
         // NO SPACIAL CHARACHER, NO TEXT
         case this.spaceAllowed && !this.charAllowed && !this.textAllowed:
           this.innerValue = String(newVal)
-            .toUpperCase()
+            .toLowerCase()
             .slice(0, this.limitSize)
             .replace(this.specialCharacterRegex, '')
             .replace(this.textOnlyRegex, '')
@@ -234,13 +234,13 @@ export default {
         // NO TEXT ALONE
         case this.spaceAllowed && this.charAllowed && !this.textAllowed:
           this.innerValue = String(newVal)
-            .toUpperCase()
+            .toLowerCase()
             .slice(0, this.limitSize)
             .replace(this.textOnlyRegex, '')
           break
         default:
           this.innerValue = String(newVal)
-            .toUpperCase()
+            .toLowerCase()
             .slice(0, this.limitSize)
           break
       }
