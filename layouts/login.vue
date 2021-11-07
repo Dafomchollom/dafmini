@@ -1,22 +1,22 @@
 <template>
-  <div class="home_Wrapper">
-    <AppNavbarComponent />
-    <Nuxt />
+  <div class="login_Wrapper">
+    <a-row class="login_Wrapper__row">
+      <a-col :span="12" class="login_Wrapper__row__login_colum">
+        <Nuxt />
+      </a-col>
+      <a-col :span="12" class="infosidebar"> </a-col>
+    </a-row>
+    fsf
   </div>
 </template>
 <script>
-import AppNavbarComponent from '@/components/layout/AppNavbarComponent'
-export default {
-  components: {
-    AppNavbarComponent,
-  },
-}
+export default {}
 </script>
 <style lang="scss" scoped>
-.home_Wrapper {
+.login_Wrapper {
   height: 100vh;
   width: 100%;
-  background: #f5f4ff;
+  background: #fff;
 }
 .login_Wrapper__row {
   height: 100%;

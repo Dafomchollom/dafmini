@@ -8,6 +8,6 @@ export default {
   components: {
     AppLoginComponent: () => import('@/components/auth/AppLoginComponent.vue'),
   },
-  layout: 'Default',
+  layout: 'login',
 }
 </script>
