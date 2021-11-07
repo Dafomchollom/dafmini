@@ -280,6 +280,36 @@ export default {
 }
 </script>
 <style>
+/* .ant-select-selection {
+  border-radius: 20px;
+  padding: 20px 15px;
+} */
+/* .ant-select-selection__placeholder {
+  position: relative !important;
+  top: 0px !important;
+} */
+/* .ant-select-selection-selected-value,
+.ant-select-search__field {
+  position: relative !important;
+  bottom: 15px !important;
+} */
+/* .ant-select-selection .ant-form-explain {
+  position: relative !important;
+  bottom: 15px !important;
+} */
+.ant-input {
+  border-radius: 20px !important;
+  padding: 20px 15px !important;
+}
+.ant-select-selection--single {
+  height: auto;
+}
+.ant-select-selection__rendered {
+  padding: 5px 15px !important;
+}
+.ant-select-selection {
+  border-radius: 20px !important;
+}
 .ant-input:disabled {
   background-color: #f8f8f8 !important;
   opacity: 1;

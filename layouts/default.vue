@@ -1,7 +1,9 @@
 <template>
   <div class="home_Wrapper">
     <AppNavbarComponent />
-    <Nuxt />
+    <div class="home_Wrapper__body">
+      <Nuxt />
+    </div>
   </div>
 </template>
 <script>
@@ -17,6 +19,9 @@ export default {
   height: 100vh;
   width: 100%;
   background: #f5f4ff;
+  .home_Wrapper__body {
+    padding: 0px 10px;
+  }
 }
 .login_Wrapper__row {
   height: 100%;

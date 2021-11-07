@@ -9,7 +9,7 @@
         @click="toggleCart"
       >
         <a-icon type="shopping-cart" />
-        <a-badge :count="5" class="cart_btn__badge">
+        <a-badge :count="cartItems.length" class="cart_btn__badge">
           <a href="#" class="head-example" />
         </a-badge>
         Cart
@@ -18,14 +18,21 @@
         <a-icon type="logout" /> Log Out
       </a-button>
     </div>
-    <div
-      class="navbar__cart"
-      :class="{ 'navbar__cart--active': isCartActive }"
-    ></div>
+    <div class="navbar__cart" :class="{ 'navbar__cart--active': isCartActive }">
+      <div
+        v-for="(items, index) in cartItems"
+        :key="index"
+        class="navbar__cart-cartItem"
+      >
+        <img src="" alt="" />
+      </div>
+    </div>
   </nav>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data() {
     return {
@@ -33,6 +40,12 @@ export default {
       isCartActive: false,
     }
   },
+  computed: {
+    ...mapState({
+      cartItems: (state) => state.cartModule.cart,
+    }),
+  },
+  watch: {},
   methods: {
     toggleCart() {
       this.isCartActive = !this.isCartActive
