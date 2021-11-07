@@ -16,6 +16,7 @@ const productSchema = Joi.object({
   description: Joi.string().min(3).required(),
   productType: Joi.string().required(),
   image: Joi.string().required(),
+  price: Joi.number().required(),
 })
 
 // productType
@@ -65,7 +66,7 @@ router.post('/', async (req, res) => {
   if (error) return res.status(400).send({ message: error.details[0].message })
 
   //   deconstruct request body
-  const { name, description, productType, image } = req.body
+  const { name, description, productType, image, price } = req.body
 
   //   check if product type exist
   const productTypeExist = await ProductType.findOne({ _id: productType })
@@ -82,6 +83,7 @@ router.post('/', async (req, res) => {
     description,
     productType,
     image,
+    price,
   })
   try {
     //   save product
