@@ -25,8 +25,13 @@
         class="navbar__cart-cartItem"
       >
         <img :src="item.image" class="cart_img" alt="" />
-        <h3>{{ item.name }}</h3>
-        <span>${{ item.price }}</span>
+        <div>
+          <span
+            ><b>{{ item.name }}</b></span
+          ><br />
+          <span>Quantity: {{ item.quantity }}</span>
+          <span>Price: ${{ item.price }}</span>
+        </div>
         <a-button shape="circle" icon="close" @click="removeItem(item)" />
       </div>
       <p class="cart_totalPrice">
@@ -81,6 +86,11 @@ export default {
           '/api/product/buyproducts',
           data
         )
+        this.$notification.success({
+          message: 'Purchase Successful',
+          description: 'your items have been purchased successfully',
+          duration: 5,
+        })
         console.log(response, ':::: response pay :::')
       } catch (e) {}
     },

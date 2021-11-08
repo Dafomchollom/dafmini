@@ -11,9 +11,14 @@
       <p class="product_card_wrapper--body_title">
         NAME: {{ productObject.name.toUpperCase() }}
       </p>
+      <p>{{ productObject.description }}</p>
       <p class="product_card_wrapper--body_price">
         Price: ${{ productObject.price }}
       </p>
+      <div class="quantity">
+        <a-button icon="plus" @click="addQuantity" />
+        {{ quantity }}<a-button icon="minus" @click="subQuantity" />
+      </div>
       <a-button
         class="product_card_wrapper--body_button"
         @click="addToCartHandler"
@@ -35,7 +40,9 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      quantity: 1,
+    }
   },
   computed: {
     ...mapState({
@@ -51,7 +58,7 @@ export default {
         (item) => item.name === this.productObject.name
       )
       if (!itemInStore) {
-        this.addToCart(this.productObject)
+        this.addToCart({ ...this.productObject, quantity: this.quantity })
         this.$notification.success({
           message: 'Item Added to Cart',
           description: `${this.productObject.name} has been successfully added to your cart`,
@@ -64,6 +71,12 @@ export default {
           duration: 0,
         })
       }
+    },
+    addQuantity() {
+      this.quantity = this.quantity + 1
+    },
+    subQuantity() {
+      if (this.quantity > 1) this.quantity = this.quantity - 1
     },
     ...mapActions({
       addToCart: 'cartModule/SET_ITEM_CART',
@@ -94,7 +107,7 @@ export default {
     .product_card_wrapper--body_title,
     .product_card_wrapper--body_price {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 15px;
       margin: 10px 0px;
     }
     .product_card_wrapper--body_button {
@@ -102,6 +115,11 @@ export default {
       padding: 10px;
       height: auto;
     }
+  }
+  .quantity {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 30px;
   }
 }
 </style>

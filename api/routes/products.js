@@ -146,12 +146,16 @@ router.post('/buyproducts', async (req, res) => {
     item.itemsBought.map((item) => item.productId).concat()
   )
 
+  const flatArray = Array.prototype.concat.apply([], userCartHistory)
+
   // loop through and find if user has bought a product before
   newItems.forEach((item) => {
-    if (userCartHistory.includes(item))
-      return res
-        .status(400)
-        .send({ message: `you have bought the this product before` })
+    newItems.forEach((newItem) => {
+      if (String(item) === String(newItem))
+        return res
+          .status(400)
+          .send({ message: `you have bought the this product before` })
+    })
   })
 
   const cart = new Cart({
@@ -162,7 +166,7 @@ router.post('/buyproducts', async (req, res) => {
     //   save cart
     const savedProduct = await cart.save()
     // send response to user
-    res.status(200).send({ savedProduct, userCartHistory })
+    res.status(200).send({ savedProduct, flatArray, newItems })
   } catch (err) {
     res.status(400).send(err)
   }
