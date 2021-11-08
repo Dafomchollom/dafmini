@@ -6,7 +6,7 @@
     </div>
     <div class="shop_wrapper-body">
       <AppSearchComponent @products="handlerProducts" />
-      <h3>Showing Search Result</h3>
+      <h3 v-if="products.length">Showing Search Result</h3>
       <a-row class="shop_seach-wrapper" :gutter="24">
         <a-col
           v-for="(product, index) in products"
