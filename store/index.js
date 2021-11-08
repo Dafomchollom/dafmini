@@ -5,6 +5,7 @@ import actions from './actions'
 
 // import modules
 import cartModule from './modules/cart'
+import authModule from './modules/auth'
 
 const createStore = () => {
   return new Store({
@@ -22,6 +23,7 @@ const createStore = () => {
     actions,
     modules: {
       cartModule,
+      authModule,
     },
   })
 }

@@ -34,6 +34,7 @@
 
 <script>
 import { ValidationObserver } from 'vee-validate'
+import { mapActions } from 'vuex'
 import AppInputComponent from '@/components/input-components/AppInputComponent.vue'
 export default {
   name: 'AppLoginComponent',
@@ -54,7 +55,7 @@ export default {
       const valid = this.$refs.loginObserver.validate()
       if (valid) {
         try {
-          const response = await this.$axios.post(
+          const { data } = await this.$axios.post(
             '/api/user/login',
             this.userObject
           )
@@ -63,8 +64,8 @@ export default {
             description: 'Logged in successfully ',
             duration: 5,
           })
+          this.setUser(data)
           this.$router.push('/shop')
-          console.log(response.data)
         } catch (err) {
           this.$notification.error({
             message: 'Error',
@@ -80,6 +81,9 @@ export default {
         })
       }
     },
+    ...mapActions({
+      setUser: 'authModule/SET_USER',
+    }),
   },
 }
 </script>

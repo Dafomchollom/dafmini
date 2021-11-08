@@ -74,9 +74,8 @@ router.post('/login', async (req, res) => {
     process.env.TOKEN_KEY
   )
   res
-    .header('rs2_auth_token', token)
     .status(200)
-    .send({ email: userExist.email, loginName: userExist.loginName })
+    .send({ email: userExist.email, loginName: userExist.loginName, token })
 })
 
 module.exports = router
