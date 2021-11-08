@@ -27,7 +27,7 @@
         <img :src="item.image" class="cart_img" alt="" />
         <h3>{{ item.name }}</h3>
         <span>${{ item.price }}</span>
-        <a-button shape="circle" icon="close" />
+        <a-button shape="circle" icon="close" @click="removeItem(item)" />
       </div>
       <p class="cart_totalPrice">
         <b>Total :</b> <span>${{ totalPrice }}</span>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -58,6 +58,10 @@ export default {
     toggleCart() {
       this.isCartActive = !this.isCartActive
     },
+    removeFromCart(item) {},
+    ...mapActions({
+      removeItem: 'cartModule/REMOVE_ITEM_CART',
+    }),
   },
 }
 </script>
@@ -100,11 +104,15 @@ export default {
     height: auto;
     width: 25rem;
     background: #fff;
+    border-radius: 20px;
     right: 0px;
-    top: 80px;
+    top: 90px;
     display: none;
     z-index: 1;
     padding: 10px 15px;
+    box-shadow: 0px 12px 15px -7px rgba(110, 110, 110, 0.47);
+    -webkit-box-shadow: 0px 12px 15px -7px rgba(110, 110, 110, 0.47);
+    -moz-box-shadow: 0px 12px 15px -7px rgba(110, 110, 110, 0.47);
     .navbar__cart-cartItem {
       margin: 10px 0px;
       border-bottom: 2px solid #cacaca;
