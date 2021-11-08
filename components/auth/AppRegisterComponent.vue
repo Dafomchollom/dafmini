@@ -2,7 +2,10 @@
   <div class="login_card">
     <div class="login_card__header">
       <h1>SIGN UP</h1>
-      <p>already have an account <a href="#login">log in</a></p>
+      <p>
+        already have an account
+        <a href="#login" @click="loginHandler">log in</a>
+      </p>
     </div>
     <div login_card__body>
       <ValidationObserver ref="loginObserver">
@@ -62,6 +65,12 @@ export default {
           this.userObject
         )
         console.log(response.data)
+        this.$notification.success({
+          message: 'Account Created Successfully',
+          description: 'please login to continue',
+          duration: 5,
+        })
+        this.loginHandler()
       } catch (error) {
         const { default: errorHandler } = await import('@/utils/errorHandler')
         errorHandler(error).forEach((msg) =>
@@ -72,6 +81,9 @@ export default {
           })
         )
       }
+    },
+    loginHandler() {
+      this.$emit('register')
     },
   },
 }

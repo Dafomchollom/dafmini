@@ -2,7 +2,7 @@
   <div class="login_card">
     <div class="login_card__header">
       <h1>Log In</h1>
-      <p>or <a href="#signup">create account</a></p>
+      <p>or <a @click="registerHandler">create account</a></p>
     </div>
     <div login_card__body>
       <ValidationObserver ref="loginObserver">
@@ -83,6 +83,9 @@ export default {
           duration: 0,
         })
       }
+    },
+    registerHandler() {
+      this.$emit('register')
     },
     ...mapActions({
       setUser: 'authModule/SET_USER',
