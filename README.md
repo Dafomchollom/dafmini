@@ -17,9 +17,11 @@ $ yarn start
 $ yarn generate
 ```
 ## .ENV
+```bash
 $ MONGOOSE_USERNAME=dafom
 $ MONGOOSE_PASSWORD=1234
 $ TOKEN_KEY=RS2CODECHALLENGE
+```
 
 please create a .env file and pass the env configurations above
 
