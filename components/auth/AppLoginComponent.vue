@@ -66,12 +66,15 @@ export default {
           })
           this.setUser(data)
           this.$router.push('/shop')
-        } catch (err) {
-          this.$notification.error({
-            message: 'Error',
-            description: `${err.message}`,
-            duration: 0,
-          })
+        } catch (error) {
+          const { default: errorHandler } = await import('@/utils/errorHandler')
+          errorHandler(error).forEach((msg) =>
+            this.$notification.error({
+              message: 'Error!',
+              description: msg,
+              duration: 0,
+            })
+          )
         }
       } else {
         this.$notification.warning({

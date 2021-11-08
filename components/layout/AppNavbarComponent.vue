@@ -92,7 +92,16 @@ export default {
           duration: 5,
         })
         console.log(response, ':::: response pay :::')
-      } catch (e) {}
+      } catch (error) {
+        const { default: errorHandler } = await import('@/utils/errorHandler');
+        errorHandler(error).forEach(msg =>
+          this.$notification.error({
+            message: 'Error!',
+            description: msg,
+            duration: 0,
+          })
+        );
+      }
     },
   },
 }
