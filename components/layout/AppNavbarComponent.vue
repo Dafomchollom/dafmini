@@ -129,6 +129,9 @@ export default {
     span {
       color: #2645ff;
     }
+    @media (max-width: 600px) {
+      font-size: 15px;
+    }
   }
   .navbar__actions {
     .navbar__actions-btn {
