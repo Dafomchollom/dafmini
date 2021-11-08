@@ -20,12 +20,19 @@
     </div>
     <div class="navbar__cart" :class="{ 'navbar__cart--active': isCartActive }">
       <div
-        v-for="(items, index) in cartItems"
+        v-for="(item, index) in cartItems"
         :key="index"
         class="navbar__cart-cartItem"
       >
-        <img src="" alt="" />
+        <img :src="item.image" class="cart_img" alt="" />
+        <h3>{{ item.name }}</h3>
+        <span>${{ item.price }}</span>
+        <a-button shape="circle" icon="close" />
       </div>
+      <p class="cart_totalPrice">
+        <b>Total :</b> <span>${{ totalPrice }}</span>
+      </p>
+      <a-button class="cart_btn">Place Order</a-button>
     </div>
   </nav>
 </template>
@@ -43,6 +50,7 @@ export default {
   computed: {
     ...mapState({
       cartItems: (state) => state.cartModule.cart,
+      totalPrice: (state) => state.cartModule.totalPrice,
     }),
   },
   watch: {},
@@ -63,6 +71,9 @@ export default {
   justify-content: space-between;
   align-items: center;
   position: relative;
+  box-shadow: 0px 12px 15px -7px rgba(110, 110, 110, 0.47);
+  -webkit-box-shadow: 0px 12px 15px -7px rgba(110, 110, 110, 0.47);
+  -moz-box-shadow: 0px 12px 15px -7px rgba(110, 110, 110, 0.47);
   .navbar__brand {
     color: #000000;
     font-size: 30px;
@@ -86,13 +97,35 @@ export default {
   }
   .navbar__cart {
     position: absolute;
-    height: 10rem;
-    width: 45rem;
-    background: red;
-    right: 10px;
+    height: auto;
+    width: 25rem;
+    background: #fff;
+    right: 0px;
     top: 80px;
     display: none;
+    z-index: 1;
+    padding: 10px 15px;
+    .navbar__cart-cartItem {
+      margin: 10px 0px;
+      border-bottom: 2px solid #cacaca;
+      height: auto;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .cart_img {
+        width: 70px;
+      }
+    }
+    .cart_btn {
+      width: 100%;
+    }
+    .cart_totalPrice {
+      display: flex;
+      justify-content: space-between;
+    }
   }
+
   .navbar__cart--active {
     display: inline-block;
   }

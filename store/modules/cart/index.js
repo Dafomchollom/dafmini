@@ -4,6 +4,7 @@ import getters from './getters'
 
 const state = {
   cart: [],
+  totalPrice: 0,
 }
 
 export default {

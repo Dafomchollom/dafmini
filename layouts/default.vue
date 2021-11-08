@@ -18,9 +18,10 @@ export default {
 .home_Wrapper {
   height: 100vh;
   width: 100%;
+  overflow-x: hidden;
   background: #f5f4ff;
   .home_Wrapper__body {
-    padding: 0px 10px;
+    padding: 20px 10px;
   }
 }
 .login_Wrapper__row {
