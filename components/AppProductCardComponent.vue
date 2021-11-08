@@ -52,6 +52,11 @@ export default {
       )
       if (!itemInStore) {
         this.addToCart(this.productObject)
+        this.$notification.success({
+          message: 'Item Added to Cart',
+          description: `${this.productObject.name} has been successfully added to your cart`,
+          duration: 0,
+        })
       } else {
         this.$notification.warning({
           message: 'Warning',

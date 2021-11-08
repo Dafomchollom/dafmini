@@ -9,6 +9,7 @@
               v-model="searchObj.productName"
               label="Product Name"
               placeholder="Product Name"
+              :rules="{ max: 30 }"
               name="Product Name"
             />
           </a-col>
