@@ -5,8 +5,10 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 dotenv.config()
-// import routes here
+// import authentication routes here
 const authRoute = require('./routes/auth')
+
+// import product routes here
 const productRoute = require('./routes/products')
 
 console.log(process.env.MONGOOSE_USERNAME, '::: user name:: ')
