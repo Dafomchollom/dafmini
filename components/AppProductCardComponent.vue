@@ -60,7 +60,7 @@ export default {
       } else {
         this.$notification.warning({
           message: 'Warning',
-          description: 'item exits in store already',
+          description: 'item exits in cart already',
           duration: 0,
         })
       }

@@ -143,7 +143,7 @@ router.post('/buyproducts', async (req, res) => {
 
   // get all products that user has bought
   const userCartHistory = user.map((item) =>
-    item.itemsBought.map((item) => item.productId).join()
+    item.itemsBought.map((item) => item.productId).concat()
   )
 
   // loop through and find if user has bought a product before

@@ -32,7 +32,9 @@
       <p class="cart_totalPrice">
         <b>Total :</b> <span>${{ totalPrice }}</span>
       </p>
-      <a-button class="cart_btn">Place Order</a-button>
+      <a-button class="cart_btn" @click.prevent="purchaseHandler"
+        >Place Order</a-button
+      >
     </div>
   </nav>
 </template>
@@ -51,6 +53,7 @@ export default {
     ...mapState({
       cartItems: (state) => state.cartModule.cart,
       totalPrice: (state) => state.cartModule.totalPrice,
+      userObject: (state) => state.authModule.userObject,
     }),
   },
   watch: {},
@@ -62,6 +65,25 @@ export default {
     ...mapActions({
       removeItem: 'cartModule/REMOVE_ITEM_CART',
     }),
+    async purchaseHandler() {
+      // construct payload for BE
+      const itemsBought = this.cartItems.map((item) => {
+        const data = { productId: item._id, quantity: item.quantity }
+        return data
+      })
+      const data = {
+        userID: this.userObject._id,
+        itemsBought,
+      }
+      // console.log(data, ':::: data :::::')
+      try {
+        const response = await this.$axios.post(
+          '/api/product/buyproducts',
+          data
+        )
+        console.log(response, ':::: response pay :::')
+      } catch (e) {}
+    },
   },
 }
 </script>

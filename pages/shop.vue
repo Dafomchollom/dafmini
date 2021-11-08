@@ -39,7 +39,18 @@ export default {
   computed: {
     ...mapState({
       cartItems: (state) => state.cartModule.cart,
+      userObject: (state) => state.authModule.userObject,
     }),
+  },
+  watch: {
+    userObject: {
+      handler(newVal) {
+        if (!newVal.token) this.$router.push('/')
+      },
+    },
+  },
+  mounted() {
+    if (!this.userObject.token) this.$router.push('/')
   },
   methods: {
     handlerProducts(products) {

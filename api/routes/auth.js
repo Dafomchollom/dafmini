@@ -73,9 +73,12 @@ router.post('/login', async (req, res) => {
     { email: userExist.email, loginName: userExist.loginName },
     process.env.TOKEN_KEY
   )
-  res
-    .status(200)
-    .send({ email: userExist.email, loginName: userExist.loginName, token })
+  res.status(200).send({
+    email: userExist.email,
+    loginName: userExist.loginName,
+    _id: userExist._id,
+    token,
+  })
 })
 
 module.exports = router
