@@ -4,23 +4,70 @@
 
 ```bash
 # install dependencies
-$ yarn install
+$ yarn install or npm install
 
 # serve with hot reload at localhost:3000
-$ yarn dev
+$ yarn dev or npm run dev
 
 # build for production and launch server
-$ yarn build
-$ yarn start
+$ yarn build or npm run build
+$ yarn start or npm run start
 
 # generate static project
-$ yarn generate
+$ yarn generate or npm run generate
 ```
 ## .ENV
 ```bash
 $ MONGOOSE_USERNAME=dafom
 $ MONGOOSE_PASSWORD=1234
 $ TOKEN_KEY=RS2CODECHALLENGE
+```
+
+## Creating a user 
+step one use the sign up page, or use postman post http://localhost:3000/api/user/register find attached sample data
+```bash
+{
+    "loginName": "dafom",
+    "email": "dafomtest@gmail.com",
+    "password": "Dongyang"
+}
+```
+
+## Creating Product Type
+create product type using postman post http://localhost:3000/api/product/productType find attached sample data
+```bash
+{
+    "name": "games",
+    "description": "Games"
+}
+```
+## Get all Product Types
+create product type using postman get http://localhost:3000/api/product/productType find attached sample data
+
+## Get all Product
+create product using postman get http://localhost:3000/api/product/ find attached sample data
+
+## Creating Product
+create product using postman post http://localhost:3000/api/product/ find attached sample data
+```bash
+{
+    "name": "harry potter",
+    "description": "this is a nice book that inspired the awesome movie franchise",
+    "productType": "6187e89ce03a238ba8a7144a",
+    "image": "https://i.ibb.co/Ybswtgw/b57b6007-afb1-4e3c-8263-b29f6534aee8-1360x2040.jpg",
+    "price": 5
+}
+```
+
+## Buying Product
+buy product with either the user interface or use postman post http://localhost:3000/api/product/buyproducts find attached sample data
+```bash
+{
+    "userID": "618818afaaa2b8763287fb0e",
+    "itemsBought": [
+        {"productId": "61889578a2d41a8daffc875f", "quantity": "7"}
+    ]
+}
 ```
 
 please create a .env file and pass the env configurations above
@@ -35,6 +82,11 @@ You can create the following extra directories, some of which have special behav
 
 The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
 
+### `api`
+
+The api directory contains the models and api routes for the backend.
+
+More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
 
 ### `components`
