@@ -165,7 +165,7 @@ router.post('/buyproducts', async (req, res) => {
     //   save cart
     const savedProduct = await cart.save()
     // send response to user
-    res.status(200).send({ savedProduct, flatArray, newItems, found })
+    res.status(200).send({ savedProduct })
   } catch (err) {
     res.status(400).send(err)
   }

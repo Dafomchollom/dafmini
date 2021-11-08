@@ -52,7 +52,6 @@ export default {
   methods: {
     addToCartHandler() {
       // check if item is in store
-      console.log(this.cartItems, '::: itemInStore ::::')
 
       const itemInStore = this.cartItems.find(
         (item) => item.name === this.productObject.name

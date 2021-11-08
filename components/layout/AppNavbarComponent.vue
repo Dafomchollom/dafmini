@@ -80,27 +80,22 @@ export default {
         userID: this.userObject._id,
         itemsBought,
       }
-      // console.log(data, ':::: data :::::')
       try {
-        const response = await this.$axios.post(
-          '/api/product/buyproducts',
-          data
-        )
+        await this.$axios.post('/api/product/buyproducts', data)
         this.$notification.success({
           message: 'Purchase Successful',
           description: 'your items have been purchased successfully',
           duration: 5,
         })
-        console.log(response, ':::: response pay :::')
       } catch (error) {
-        const { default: errorHandler } = await import('@/utils/errorHandler');
-        errorHandler(error).forEach(msg =>
+        const { default: errorHandler } = await import('@/utils/errorHandler')
+        errorHandler(error).forEach((msg) =>
           this.$notification.error({
             message: 'Error!',
             description: msg,
             duration: 0,
           })
-        );
+        )
       }
     },
   },

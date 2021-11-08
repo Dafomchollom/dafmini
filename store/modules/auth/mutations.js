@@ -4,7 +4,6 @@ export default {
   // set Item to cart
   [SET_USER](state, payload) {
     state.userObject = payload
-    console.log(payload, '::: from store :::')
   },
 
   // remove item from cart

@@ -14,7 +14,6 @@ export default {
   // remove item from cart
   [REMOVE_ITEM_CART](state, payload) {
     const newCart = state.cart.filter((item) => item._id !== payload._id)
-    console.log(newCart, ':::: newCart ::::', payload)
 
     let totalPrice = 0
     newCart.forEach((item) => {
