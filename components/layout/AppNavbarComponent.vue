@@ -14,7 +14,11 @@
         </a-badge>
         Cart
       </a-button>
-      <a-button type="default" class="logout_btn navbar__actions-btn">
+      <a-button
+        type="default"
+        class="logout_btn navbar__actions-btn"
+        @click="logUserOut"
+      >
         <a-icon type="logout" /> Log Out
       </a-button>
     </div>
@@ -67,8 +71,12 @@ export default {
       this.isCartActive = !this.isCartActive
     },
     removeFromCart(item) {},
+    logOutHandler() {
+      this.logUserOut()
+    },
     ...mapActions({
       removeItem: 'cartModule/REMOVE_ITEM_CART',
+      logUserOut: 'authModule/REMOVE_USER',
     }),
     async purchaseHandler() {
       // construct payload for BE
